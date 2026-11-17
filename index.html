@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>너의 미래는 | 뉴라이</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", sans-serif;
+  color: #392a25;
+  background: linear-gradient(135deg,#fff3c4,#ffe0ad,#dcecff);
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("newrai1.webp") center/cover;
+  opacity: .09;
+  pointer-events: none;
+}
+header {
+  background: #fff8e8;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #eeb957;
+  position: relative;
+}
+.logo { font-size: 24px; font-weight: 900; }
+.tag { font-size: 12px; color: #986b38; }
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 24px 16px 60px;
+  position: relative;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  background: #ffdc8c;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px #a16a3330;
+}
+.heroText { padding: 35px; }
+.hero h1 { font-size: 34px; margin: 12px 0; }
+.hero p { line-height: 1.8; }
+.hero img {
+  width: 100%;
+  height: 100%;
+  max-height: 330px;
+  object-fit: cover;
+}
+.card {
+  background: #fffdf8;
+  border: 2px solid #f2d7a6;
+  border-radius: 22px;
+  padding: 25px;
+  margin-top: 22px;
+  box-shadow: 0 6px 20px #a16a3315;
+}
+h2 { font-size: 22px; margin-top: 0; }
+label {
+  display: block;
+  margin: 15px 0 7px;
+  font-weight: bold;
+}
+input,select {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #e8d6b6;
+  border-radius: 12px;
+  font-size: 16px;
+  background: white;
+}
+input:focus {
+  outline: none;
+  border-color: #e9a12d;
+}
+button {
+  border: none;
+  padding: 15px 22px;
+  border-radius: 14px;
+  background: #e99c27;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover { background: #c67c14; }
+button.secondary { background: #7460a4; }
+button.danger { background: #b85a50; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+.result {
+  display: none;
+  text-align: center;
+}
+.character {
+  width: min(100%,270px);
+  height: 230px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 5px solid #ffce65;
+}
+.rank {
+  font-size: 28px;
+  font-weight: 900;
+  color: #b36c12;
+  margin: 14px 0;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+}
+.stat {
+  background: #fff1ce;
+  border-radius: 15px;
+  padding: 18px 8px;
+}
+.stat strong {
+  display: block;
+  font-size: 23px;
+  margin-top: 8px;
+}
+.progress {
+  background: #e9e1d5;
+  height: 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+#bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg,#f2b43d,#77c98c);
+  transition: width .6s;
+}
+.badges {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+}
+.badge {
+  background:#ffedba;
+  border:2px solid #e8c06c;
+  padding:12px;
+  border-radius:14px;
+}
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.gallery img {
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:15px;
+}
+.historyItem {
+  background:#fff3d9;
+  padding:12px;
+  border-radius:12px;
+  margin:8px 0;
+  text-align:left;
+}
+.notice {
+  font-size:13px;
+  color:#80684c;
+  line-height:1.7;
+}
+footer {
+  text-align:center;
+  padding:25px;
+  color:#846f55;
+}
+@media(max-width:650px) {
+  .hero { grid-template-columns:1fr; }
+  .heroText { padding:23px; }
+  .hero h1 { font-size:27px; }
+  .hero img { height:230px; }
+  .grid { grid-template-columns:1fr; }
+  .stats { grid-template-columns:1fr; }
+  .gallery img { height:110px; }
+  .card { padding:18px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">🐮 너의 미래는</div>
+    <div class="tag">NEWRAI FUTURE MONEY</div>
+  </div>
+  <span>✨ 소비습관 성장 게임</span>
+</header>
+
+<main>
+<section class="hero">
+  <div class="heroText">
+    <h1>내 소비습관으로<br>미래의 나를 만나보자!</h1>
+    <p>
+      이번 주 용돈을 얼마나 아꼈을까?<br>
+      뉴라이가 나의 소비습관을 분석하고<br>
+      미래 등급을 알려줄게!
+    </p>
+    <button onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+      미래 확인하기 →
+    </button>
+  </div>
+  <img src="newrai3.webp" alt="뉴라이 캐릭터">
+</section>
+
+<section class="card" id="form">
+  <h2>💰 나의 소비습관 입력</h2>
+  <p>이번 주 용돈과 지출을 입력해 줘!</p>
+
+  <div class="grid">
+    <div>
+      <label for="allowance">일주일 용돈 (원)</label>
+      <input id="allowance" type="number" min="1" placeholder="예: 200000">
+    </div>
+    <div>
+      <label for="spent">일주일 사용 금액 (원)</label>
+      <input id="spent" type="number" min="0" placeholder="예: 30000">
+    </div>
+  </div>
+
+  <label for="category">가장 많이 소비한 분야</label>
+  <select id="category">
+    <option value="음식">🍔 음식 / 간식</option>
+    <option value="쇼핑">🛍️ 쇼핑</option>
+    <option value="게임">🎮 게임</option>
+    <option value="교통">🚌 교통</option>
+    <option value="기타">✨ 기타</option>
+  </select>
+
+  <div class="actions">
+    <button onclick="analyze()">🔮 미래 분석하기</button>
+    <button class="secondary" onclick="example()">예시 입력</button>
+  </div>
+  <p id="error" style="color:#bd3434" role="alert"></p>
+</section>
+
+<section class="card result" id="result" aria-live="polite">
+  <h2>🐮 뉴라이가 알려주는 나의 미래!</h2>
+  <img id="rankImage" class="character" src="newrai1.webp" alt="미래 뉴라이">
+  <div class="rank" id="rank"></div>
+  <p id="message"></p>
+
+  <div class="stats">
+    <div class="stat">이번 주 용돈<strong id="total"></strong></div>
+    <div class="stat">사용 금액<strong id="used"></strong></div>
+    <div class="stat">남은 금액<strong id="remain"></strong></div>
+  </div>
+
+  <h3>🌱 나의 미래 성장 게이지</h3>
+  <div class="progress"><div id="bar"></div></div>
+  <strong id="percent"></strong>
+
+  <h3>🏅 획득한 배지</h3>
+  <div class="badges" id="badges"></div>
+
+  <h3>💡 뉴라이의 소비 조언</h3>
+  <p id="advice"></p>
+
+  <button onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">
+    다시 분석하기
+  </button>
+</section>
+
+<section class="card">
+  <h2>📜 나의 성장 기록</h2>
+  <p>이전에 분석한 결과를 확인할 수 있어.</p>
+  <div id="history"></div>
+  <button class="danger" onclick="clearHistory()">기록 삭제</button>
+</section>
+
+<section class="card">
+  <h2>📸 뉴라이 캐릭터 갤러리</h2>
+  <div class="gallery">
+    <img src="newrai1.webp" alt="휴식하는 뉴라이">
+    <img src="newrai2.jpg" alt="생각하는 뉴라이">
+    <img src="newrai3.webp" alt="전설의 뉴라이">
+  </div>
+  <p class="notice">
+    사진이 보이지 않으면 이미지 파일 3개를
+    index.html과 같은 폴더에 넣어 줘.
+  </p>
+</section>
+</main>
+
+<footer>
+  🐮 너의 미래는 | 뉴라이와 함께하는 금융 습관<br>
+  해커톤 교육용 소비 분석 서비스
+</footer>
+
+<script>
+const money = n => Math.round(n).toLocaleString("ko-KR")+"원";
+const storeKey = "newrai_future_history_v1";
+
+function example() {
+  document.getElementById("allowance").value=200000;
+  document.getElementById("spent").value=30000;
+  document.getElementById("category").value="음식";
+  analyze();
+}
+
+function getHistory() {
+  try {
+    const value=JSON.parse(localStorage.getItem(storeKey)||"[]");
+    return Array.isArray(value)?value:[];
+  } catch(e) {
+    return [];
+  }
+}
+
+function analyze() {
+  const a=Number(document.getElementById("allowance").value);
+  const s=Number(document.getElementById("spent").value);
+  const category=document.getElementById("category").value;
+  const error=document.getElementById("error");
+  error.textContent="";
+
+  if(!Number.isFinite(a)||a<=0||
+     document.getElementById("allowance").value==="") {
+    error.textContent="용돈은 0원보다 큰 금액으로 입력해 줘!";
+    return;
+  }
+  if(!Number.isFinite(s)||s<0||
+     document.getElementById("spent").value==="") {
+    error.textContent="사용 금액을 0원 이상으로 입력해 줘!";
+    return;
+  }
+  if(s>a) {
+    error.textContent="사용 금액이 용돈보다 많아! 금액을 다시 확인해 줘.";
+    return;
+  }
+
+  const remaining=a-s;
+  const rate=Math.round(remaining/a*100);
+  let rank, message, image, badge;
+
+  if(rate>=80) {
+    rank="👑 5등급 · 미래 전설";
+    message="엄청나! 미래의 너는 절약의 전설이야!";
+    image="newrai3.webp";
+    badge="👑 미래 전설 배지";
+  } else if(rate>=60) {
+    rank="💎 4등급 · 황금 뉴라이";
+    message="멋져! 아주 훌륭한 소비습관을 가졌어!";
+    image="newrai2.jpg";
+    badge="💎 황금 절약 배지";
+  } else if(rate>=40) {
+    rank="🌟 3등급 · 성장 뉴라이";
+    message="좋아! 조금만 더 아끼면 더 성장할 수 있어!";
+    image="newrai2.jpg";
+    badge="🌟 성장 배지";
+  } else if(rate>=20) {
+    rank="🌱 2등급 · 새싹 뉴라이";
+    message="이제부터 조금씩 저축하는 습관을 만들어 보자!";
+    image="newrai1.webp";
+    badge="🌱 새싹 배지";
+  } else {
+    rank="🥚 1등급 · 시작 뉴라이";
+    message="괜찮아! 오늘부터 미래를 바꿔 보자!";
+    image="newrai1.webp";
+    badge="🥚 첫걸음 배지";
+  }
+
+  const tips={
+    "음식":"간식 구매 횟수를 일주일에 한 번만 줄여 보자!",
+    "쇼핑":"물건을 사기 전에 하루 동안 생각해 보자!",
+    "게임":"게임 결제 한도를 미리 정해 보자!",
+    "교통":"가능한 거리는 걷거나 대중교통을 활용해 보자!",
+    "기타":"지출 내역을 기록해서 불필요한 소비를 찾아보자!"
+  };
+
+  document.getElementById("rank").textContent=rank;
+  document.getElementById("message").textContent=message;
+  document.getElementById("rankImage").src=image;
+  document.getElementById("total").textContent=money(a);
+  document.getElementById("used").textContent=money(s);
+  document.getElementById("remain").textContent=money(remaining);
+  document.getElementById("percent").textContent="저축 비율 "+rate+"%";
+  document.getElementById("bar").style.width=rate+"%";
+  document.getElementById("advice").textContent=tips[category];
+
+  const badges=document.getElementById("badges");
+  badges.replaceChildren();
+  [badge,remaining>0?"💰 저축 성공":null,
+   rate>=80?"🏆 최고 등급 달성":null]
+    .filter(Boolean).forEach(name=>{
+      const el=document.createElement("span");
+      el.className="badge";
+      el.textContent=name;
+      badges.appendChild(el);
+    });
+
+  document.getElementById("result").style.display="block";
+
+  const history=getHistory();
+  history.unshift({
+    date:new Date().toLocaleString("ko-KR"),
+    rank, rate, remaining
+  });
+  try {
+    localStorage.setItem(storeKey,JSON.stringify(history.slice(0,20)));
+  } catch(e) {
+    error.textContent="기록 저장이 제한된 브라우저야. 분석은 정상적으로 완료됐어.";
+  }
+  renderHistory();
+  document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+
+function renderHistory() {
+  const el=document.getElementById("history");
+  el.replaceChildren();
+  const history=getHistory();
+
+  if(!history.length) {
+    el.textContent="아직 분석 기록이 없어.";
+    return;
+  }
+  history.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="historyItem";
+    div.textContent=item.date+" | "+item.rank+
+      " | 저축 "+item.rate+"% | 남은 돈 "+money(item.remaining);
+    el.appendChild(div);
+  });
+}
+
+function clearHistory() {
+  if(!confirm("분석 기록을 모두 삭제할까?")) return;
+  localStorage.removeItem(storeKey);
+  renderHistory();
+}
+
+renderHistory();
+</script>
+</body>
+</html>
